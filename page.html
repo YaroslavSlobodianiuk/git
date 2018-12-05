@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function select(s1,s2){
+	var s1 = document.getElementById(s1);
+	var s2 = document.getElementById(s2);
+	s2.innerHTML = "";
+	if(s1.value == "User"){
+		document.getElementById("3").disabled = true;
+		document.getElementById("4").disabled = true;
+	} else if(s1.value == "Student"){
+		document.getElementById("4").disabled = true;
+		document.getElementById("3").disabled = false;
+	} else if(s1.value == "Developer"){
+		document.getElementById("3").disabled = false;
+		document.getElementById("4").disabled = false;
+	}
+	for(var option in optionArray){
+		var pair = optionArray[option].split("|");
+		var newOption = document.createElement("option");
+		newOption.value = pair[0];
+		newOption.innerHTML = pair[1];
+		s2.options.add(newOption);
+	}
+}
+</script>
+</head>
+<body>
+
+
+Select type:
+<select id="slct1" name="slct1" onchange="select(this.id,'slct2')">
+  <option value=""></option>
+  <option value="User">User</option>
+  <option value="Student">Student</option>
+  <option value="Developer">Developer</option>
+</select>
+
+
+<select id="slct2" name="slct2" style="display: none"></select>
+<hr />
+
+<form name="Sel3" id="slct3">
+    <table>
+        <tr><td><b>title:<b></td>
+            <td><input name="title" id="1" size=20></td></tr>
+        <tr><td><b>status:<B></td>
+            <td><input name="status" id="2" size=20
+                       onFocus="this.select();"></td></tr>
+        <tr><td><b>description:<B></TD>
+            <td><input name="desc" id="3" size=20
+                       onFocus="this.select();"></td></tr>
+	<tr><td><b>deadline date:<B></TD>
+            <td><input name="line" id="4" size=20
+                       onFocus="this.select();"></td></tr>
+    </table>
+    <input type="button" value="Add task" onClick="FutureFunction();">
+    <input type="reset" value="Reset">
+</FORM>
+</body>
+</html>
